@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:e_commerce/App/Modules/Dasboard/Controller/HomeController.dart';
+import 'package:e_commerce/App/Modules/Dasboard/Tabs/CartPage.dart';
 import 'package:e_commerce/App/Shared/sawidget/ImageView.dart';
 import 'package:e_commerce/App/Shared/sawidget/cell_container.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,7 +33,7 @@ class DashBoardPage extends GetView<DashBoardController> {
         streamController: streamController,
       ),
       Container(),
-      Container(),
+      CartPage(),
       ProfilePage(),
 
 
@@ -104,50 +105,61 @@ class DashBoardPage extends GetView<DashBoardController> {
         init: DashBoardController(),
         builder: (_) {
           return Scaffold(
+            backgroundColor: Colors.transparent,
             appBar: PreferredSize(
               preferredSize:
              /* controller.bottomNavIndex.value == 3 ?
            Size.fromHeight(0):*/
               Size.fromHeight(60),
-              child: AppBar(
-              iconTheme: IconThemeData(color: Colors.white),
-              elevation: 0,
-              backgroundColor:  ColorConstants.APPPRIMARYBLACKCOLOR,
-              centerTitle: true,
-              title:
-              headingText(title: "E-commerce",color: Colors.white,fontSize: 17,fontWeight: FontWeight.bold),
-              actions: [
-                controller.bottomNavIndex.value == 3 ?
-                GestureDetector(
-                  onTap: (){
-                    EditNameEmailDialogUI(context);
-                  },
-                  child: SACellRoundContainer(
-                      height: 30,width: 35,
-                      color:  ColorConstants.APPPRIMARYLIGHTGREYCOLOR,
-                      child: Center(child: Icon(
-                        Icons.edit_outlined,
-                        size: 20,
-                        color:ColorConstants.APPPRIMARYWHITECOLOR,
-                      ),),
-                      radius: 8,
-                      borderWidth: 0,
-                      borderWidthColor: Colors.transparent
-                  ),
-                ):
-                SizedBox(
-                  height: 40,width: 40,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: ImageViewCovered(
-                      photoUrl: hController.ProfileIMG,
+              child: Container(
 
-              ),
-                  ),
-                ),addPadding(0, 15),
 
-              ],
+                decoration: BoxDecoration(
+                  color: ColorConstants.APPPRIMARYBLACKCOLOR,
+                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(
+                      controller.bottomNavIndex.value == 1
+                      ? 25 : controller.bottomNavIndex.value == 2?25:0))
+                ),
+                child: AppBar(
+                iconTheme: IconThemeData(color: Colors.white),
+                elevation: 0,
+                backgroundColor:  Colors.transparent,
+                centerTitle: true,
+                title:
+                headingText(title: "E-commerce",color: Colors.white,fontSize: 17,fontWeight: FontWeight.bold),
+                actions: [
+                  controller.bottomNavIndex.value == 3 ?
+                  GestureDetector(
+                    onTap: (){
+                      EditNameEmailDialogUI(context);
+                    },
+                    child: SACellRoundContainer(
+                        height: 30,width: 35,
+                        color:  ColorConstants.APPPRIMARYLIGHTGREYCOLOR,
+                        child: Center(child: Icon(
+                          Icons.edit_outlined,
+                          size: 20,
+                          color:ColorConstants.APPPRIMARYWHITECOLOR,
+                        ),),
+                        radius: 8,
+                        borderWidth: 0,
+                        borderWidthColor: Colors.transparent
+                    ),
+                  ):
+                  SizedBox(
+                    height: 40,width: 40,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: ImageViewCovered(
+                        photoUrl: hController.ProfileIMG,
+
+                ),
+                    ),
+                  ),addPadding(0, 15),
+
+                ],
             ),
+              ),
       ),
 
             drawer: Drawer(),
@@ -163,7 +175,6 @@ class DashBoardPage extends GetView<DashBoardController> {
                     child: Row(
                       children: [
 
-                        // CircleAvatar()
 
                       ],
                     ),
@@ -215,6 +226,7 @@ class DashBoardPage extends GetView<DashBoardController> {
             },
             items: [
               BottomNavigationBarItem(
+                backgroundColor: Colors.transparent,
                   icon: Icon(
                     Icons.home,
                     color: controller.homeIcon.value

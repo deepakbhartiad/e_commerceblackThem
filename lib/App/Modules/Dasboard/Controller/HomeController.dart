@@ -56,7 +56,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
+    print("Hello_Home_Page");
     //  _getStoragePermission();
   }
 

@@ -1,4 +1,3 @@
-import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:e_commerce/App/Shared/constands/colors.dart';
 import 'package:e_commerce/App/Shared/sawidget/cell_container.dart';
 import 'package:e_commerce/App/Shared/sawidget/textview.dart';
@@ -11,6 +10,7 @@ import 'package:lorem_ipsum/lorem_ipsum.dart';
 import '../../../Shared/sawidget/CustomPaints.dart';
 import '../../../Shared/sawidget/ImageView.dart';
 import '../../../Shared/sawidget/LoadingOverlay.dart';
+import '../../../Shared/sawidget/SACarsol.dart';
 class ProductDetailsView extends StatefulWidget {
   String productUrl;
   String productName;
@@ -40,7 +40,19 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                // fit: StackFit.expand,
                children: [
                  SafeArea(
-                     child: CarouselImageSlider(context,widget.productUrl)),
+                     child: Container(
+                       padding: EdgeInsets.symmetric(horizontal: 10),
+                       width: double.infinity,
+                       height: MediaQuery.of(context).size.height * 0.5,
+                       child: ClipRRect(
+                         borderRadius: BorderRadius.circular(15),
+                         child: ImageViewFill(
+                           photoUrl: widget.productUrl,
+                         ),
+                       ),
+                     )
+                     //CarouselImageSlider(context,widget.productUrl)
+                 ),
                  SafeArea(
                    child: Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 17,vertical: 17),
@@ -460,50 +472,68 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
 
 
   Widget CarouselImageSlider(
-      BuildContext context, String bannerUrlLList) {
+      BuildContext context, List bannerUrlLList) {
     return Padding(
       padding:  EdgeInsets.symmetric(horizontal: 5.0,vertical: 5),
       child: bannerUrlLList.isEmpty
           ?  PageNationLoaderPage()
-          : Container(
+          :SACarousel(
+        width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.5,
-        child: AnotherCarousel(
-           autoplay: false,
-          dotSize: 4,
-          dotHorizontalPadding: 0,
-          dotBgColor: Colors.transparent,
-          images:[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: ImageViewCovered(
-                  photoUrl: bannerUrlLList
-              ),
+        list:bannerUrlLList.map((e) =>  GestureDetector(
+          onTap: () {
+            // Get.to(AllMovieAndSerialDetails(movieId: e.MovieID,));
+          },
+          child: SACellGradientContainer(
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    headingText(
+                        title: "MacBook Pro",
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 16),
+                    headingText(
+                        title: "From \u{20B9}50000",
+                        color: ColorConstants.APPPRIMARYCOLOR2,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SACellRoundContainer(
+                      radius: 5,
+                      borderWidth: 0,
+                      color: Colors.blue,
+                      borderWidthColor: Colors.transparent,
+                      child: headingText(
+                          title: "Book Now",
+                          fontSize: 11,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600)
+                          .paddingAll(5),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 170,
+                  width: 170,
+                  child: ImageView(photoUrl: e),
+                ),
+              ],
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: ImageViewCovered(
-                  photoUrl: bannerUrlLList
-              ),
-            ),
-          ]
-
-         /*
-            bannerUrlLList.map((e) => GestureDetector(
-            onTap: () {
-              // Get.to(AllMovieAndSerialDetails(movieId: e.MovieID,));
-            },
-            child: SACellGradientContainer(
-              width: double.infinity,
-              child: ImageView(
-                  photoUrl: e
-              ),
-              borderRadius: 20, GRcolor: [Colors.grey,Colors.black],
-            ).paddingSymmetric(horizontal: 8),
-          )).toList(),*/
-        ),
+            borderRadius: 20,
+            GRcolor: [Colors.grey, Colors.black],
+          ).paddingSymmetric(horizontal: 8),
+        )).toList(),
       ),
-    );
-  }
+
+    );}
 
 
 

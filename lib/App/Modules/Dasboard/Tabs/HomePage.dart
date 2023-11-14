@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:e_commerce/App/Shared/sawidget/ImageView.dart';
 import 'package:e_commerce/app/shared/constands/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../Shared/sawidget/CommonButton.dart';
 import '../../../Shared/sawidget/CustomPaints.dart';
 import '../../../Shared/sawidget/LoadingOverlay.dart';
+import '../../../Shared/sawidget/SACarsol.dart';
 import '../../../Shared/sawidget/cell_container.dart';
 import '../../../Shared/sawidget/textview.dart';
 import '../Controller/DasboardController.dart';
@@ -218,7 +217,7 @@ class HomePage extends GetView<HomeController> {
                 height: 8,
               ),
               // first image slider
-              CarouselImageSlider(context, controller.bannerUrlLList),
+              CarouselImageSlider(context, controller.bannerUrlLList2),
               // wishlist
               Padding(
                 padding: const EdgeInsets.only(
@@ -362,118 +361,116 @@ class HomePage extends GetView<HomeController> {
                       );
                     }),
               ),
-              SizedBox(
-                height: 700,
-                child: GridView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: 4,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, mainAxisExtent: 350),
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Get.to(ProductDetailsView(
-                            productUrl: controller.model1,
-                            productName: "Casual Shirt",
-                          ));
-                        },
-                        child: Container(
-                          // color: Colors.blue,
-                          margin: EdgeInsets.all(2),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Stack(
-                                children: [
-                                  SizedBox(
-                                      height: 250,
-                                      child: ClipRRect(
-                                          borderRadius: BorderRadius.vertical(
-                                              top: Radius.circular(13)),
-                                          child: ImageViewCovered(
-                                              photoUrl: controller.model1))),
-                                  Positioned(
-                                      top: 7,
-                                      right: 7,
-                                      child: SACellRoundContainer(
-                                        height: 30,
-                                        width: 30,
-                                        radius: 10,
-                                        borderWidth: 0,
-                                        borderWidthColor: Colors.transparent,
-                                        color: Colors.grey,
-                                        child: Icon(
-                                          Icons.favorite_border,
-                                          color: Colors.white,
-                                        ),
-                                      )),
-                                ],
-                              ),
-                              addPadding(5, 0),
-                              headingText(
-                                  title: "Casual Shirt",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                              addPadding(5, 0),
-                              RatingBar.builder(
-                                // initialRating: astroList[i].rating.toDouble(),
-                                minRating: 1,
-                                direction: Axis.horizontal,
-                                itemSize: 15,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemBuilder: (context, _) => const Icon(
-                                  Icons.star,
-                                  size: 10,
-                                  color: Color(0xffb68f02),
-                                ),
-                                onRatingUpdate: (double value) {},
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      headingShortLongText(
-                                          title: "\u{20B9}670",
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 11),
-                                      Text(
-                                        "\u{20B9}750",
-                                        style: TextStyle(
-                                            fontSize: 11,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                            color: Colors.grey),
+              GridView.builder(
+                shrinkWrap: true,
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: 4,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, mainAxisExtent: 350),
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Get.to(ProductDetailsView(
+                          productUrl: controller.model1,
+                          productName: "Casual Shirt",
+                        ));
+                      },
+                      child: Container(
+                        // color: Colors.blue,
+                        margin: EdgeInsets.all(2),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Stack(
+                              children: [
+                                SizedBox(
+                                    height: 250,
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(13)),
+                                        child: ImageViewCovered(
+                                            photoUrl: controller.model1))),
+                                Positioned(
+                                    top: 7,
+                                    right: 7,
+                                    child: SACellRoundContainer(
+                                      height: 30,
+                                      width: 30,
+                                      radius: 10,
+                                      borderWidth: 0,
+                                      borderWidthColor: Colors.transparent,
+                                      color: Colors.grey,
+                                      child: Icon(
+                                        Icons.favorite_border,
+                                        color: Colors.white,
                                       ),
-                                    ],
-                                  ),
-                                  SACellRoundContainer(
-                                      radius: 5,
-                                      borderWidth: 1,
-                                      borderWidthColor: Colors.blue,
-                                      color: Colors.blue.withOpacity(0.1),
-                                      child: headingText(
-                                              title: "ADD",
-                                              color: Colors.blue,
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.bold)
-                                          .paddingSymmetric(
-                                              horizontal: 13, vertical: 4))
-                                ],
-                              )
-                            ],
-                          ),
+                                    )),
+                              ],
+                            ),
+                            addPadding(5, 0),
+                            headingText(
+                                title: "Casual Shirt",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),
+                            addPadding(5, 0),
+                            RatingBar.builder(
+                              // initialRating: astroList[i].rating.toDouble(),
+                              minRating: 1,
+                              direction: Axis.horizontal,
+                              itemSize: 15,
+                              allowHalfRating: true,
+                              itemCount: 5,
+                              itemBuilder: (context, _) => const Icon(
+                                Icons.star,
+                                size: 10,
+                                color: Color(0xffb68f02),
+                              ),
+                              onRatingUpdate: (double value) {},
+                            ),
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    headingShortLongText(
+                                        title: "\u{20B9}670",
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 11),
+                                    Text(
+                                      "\u{20B9}750",
+                                      style: TextStyle(
+                                          fontSize: 11,
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          color: Colors.grey),
+                                    ),
+                                  ],
+                                ),
+                                SACellRoundContainer(
+                                    radius: 5,
+                                    borderWidth: 1,
+                                    borderWidthColor: Colors.blue,
+                                    color: Colors.blue.withOpacity(0.1),
+                                    child: headingText(
+                                            title: "ADD",
+                                            color: Colors.blue,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.bold)
+                                        .paddingSymmetric(
+                                            horizontal: 13, vertical: 4))
+                              ],
+                            )
+                          ],
                         ),
-                      );
-                    }),
-              ),
-              CarouselImageSlider2(context, controller.bannerUrlLList2),
+                      ),
+                    );
+                  }),
+              CarouselImageSlider(context, controller.bannerUrlLList)
             ],
           ),
         ),
@@ -482,8 +479,6 @@ class HomePage extends GetView<HomeController> {
   }
 
   void CategoryProductUi(int tblPanditPujaId, String Tittle, String url) {
-    // List samagriList =
-    // pujaDetailViewModel!.data.first.pujaSamagriName.split(",");
     Get.bottomSheet(isScrollControlled: true, enableDrag: true, StatefulBuilder(
       builder: (BuildContext context, void Function(void Function()) setState) {
         return Column(
@@ -682,142 +677,66 @@ class HomePage extends GetView<HomeController> {
   Widget CarouselImageSlider(BuildContext context, RxList bannerUrlLList) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
-      child: controller.bannerUrlLList.isEmpty
+      child: bannerUrlLList.isEmpty
           ? PageNationLoaderPage()
-          : Container(
+          : SACarousel(
+               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.2,
-              child: AnotherCarousel(
-                autoplay: true,
-                dotSize: 4,
-                dotHorizontalPadding: 0,
-                dotBgColor: Colors.transparent,
-                images: bannerUrlLList
-                    .map((e) => GestureDetector(
-                          onTap: () {
-                            // Get.to(AllMovieAndSerialDetails(movieId: e.MovieID,));
-                          },
-                          child: SACellGradientContainer(
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    headingText(
-                                        title: "MacBook Pro",
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 16),
-                                    headingText(
-                                        title: "From \u{20B9}50000",
-                                        color: ColorConstants.APPPRIMARYCOLOR2,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    SACellRoundContainer(
-                                      radius: 5,
-                                      borderWidth: 0,
-                                      color: Colors.blue,
-                                      borderWidthColor: Colors.transparent,
-                                      child: headingText(
-                                              title: "Book Now",
-                                              fontSize: 11,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600)
-                                          .paddingAll(5),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 170,
-                                  width: 170,
-                                  child: ImageView(photoUrl: e),
-                                ),
-                              ],
-                            ),
-                            borderRadius: 20,
-                            GRcolor: [Colors.grey, Colors.black],
-                          ).paddingSymmetric(horizontal: 8),
-                        ))
-                    .toList(),
-              ),
+             list: bannerUrlLList.map((e) =>  GestureDetector(
+          onTap: () {
+            // Get.to(AllMovieAndSerialDetails(movieId: e.MovieID,));
+          },
+          child: SACellGradientContainer(
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    headingText(
+                        title: "MacBook Pro",
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 16),
+                    headingText(
+                        title: "From \u{20B9}50000",
+                        color: ColorConstants.APPPRIMARYCOLOR2,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SACellRoundContainer(
+                      radius: 5,
+                      borderWidth: 0,
+                      color: Colors.blue,
+                      borderWidthColor: Colors.transparent,
+                      child: headingText(
+                          title: "Book Now",
+                          fontSize: 11,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600)
+                          .paddingAll(5),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 170,
+                  width: 170,
+                  child: ImageView(photoUrl: e),
+                ),
+              ],
+            ),
+            borderRadius: 20,
+            GRcolor: [Colors.grey, Colors.black],
+          ).paddingSymmetric(horizontal: 8),
+        )).toList(),
             ),
     );
   }
 
-  Widget CarouselImageSlider2(BuildContext context, RxList bannerUrlLList2) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.0),
-      child: controller.bannerUrlLList.isEmpty
-          ? PageNationLoaderPage()
-          : Container(
-              height: MediaQuery.of(context).size.height * 0.2,
-              child: AnotherCarousel(
-                autoplay: true,
-                dotSize: 4,
-                dotHorizontalPadding: 0,
-                dotBgColor: Colors.transparent,
-                images: bannerUrlLList2
-                    .map((e) => GestureDetector(
-                          onTap: () {
-                            // Get.to(AllMovieAndSerialDetails(movieId: e.MovieID,));
-                          },
-                          child: SACellGradientContainer(
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    headingText(
-                                        title: "Mens Fashion",
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 16),
-                                    headingText(
-                                        title: "From \u{20B9}500",
-                                        color: ColorConstants.APPPRIMARYCOLOR2,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    SACellRoundContainer(
-                                      radius: 5,
-                                      borderWidth: 0,
-                                      color: Colors.blue,
-                                      borderWidthColor: Colors.transparent,
-                                      child: headingText(
-                                              title: "Shop Now",
-                                              fontSize: 11,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600)
-                                          .paddingAll(5),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 170,
-                                  width: 170,
-                                  child: ImageView(photoUrl: e),
-                                ),
-                              ],
-                            ),
-                            borderRadius: 20,
-                            GRcolor: [Colors.grey, Colors.black],
-                          ).paddingSymmetric(horizontal: 8),
-                        ))
-                    .toList(),
-              ),
-            ),
-    );
-  }
 
   searchYourProductUI() {
     return SizedBox(

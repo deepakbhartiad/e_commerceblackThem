@@ -1,3 +1,4 @@
+import 'package:e_commerce/App/Modules/Dasboard/Controller/CartPageController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -133,26 +134,28 @@ class DashBoardController extends GetxController with WidgetsBindingObserver{
   }
 
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    switch (state) {
-      case AppLifecycleState.resumed:
-        print("app in resumed");
-        // player.value.play();
-        break;
-      case AppLifecycleState.inactive:
-        print("app in inactive");
-
-        break;
-      case AppLifecycleState.paused:
-        print("app in paused");
-        break;
-      case AppLifecycleState.detached:
-        print("app in detached");
-        break;
-    }
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   super.didChangeAppLifecycleState(state);
+  //   switch (state) {
+  //     case AppLifecycleState.resumed:
+  //       print("app in resumed");
+  //       // player.value.play();
+  //       break;
+  //     case AppLifecycleState.inactive:
+  //       print("app in inactive");
+  //
+  //       break;
+  //     case AppLifecycleState.paused:
+  //       print("app in paused");
+  //       break;
+  //     case AppLifecycleState.detached:
+  //       print("app in detached");
+  //       break;
+  //     case AppLifecycleState.hidden:
+  //       // TODO: Handle this case.
+  //   }
+  // }
 /*
 
   void getProfileDetail() {
@@ -772,5 +775,6 @@ class DashBoardBinding extends Bindings{
   void dependencies() {
     Get.lazyPut<DashBoardController>(() => DashBoardController());
     Get.put<HomeController>(HomeController());
+    Get.put<CartPageController>(CartPageController());
   }
 }

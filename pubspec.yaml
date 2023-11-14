@@ -39,7 +39,6 @@ dependencies:
   google_fonts: ^5.1.0
   flutter_easyloading: ^3.0.5
   fancy_shimmer_image: ^2.0.2
-  another_carousel_pro: ^1.0.0
   flutter_rating_bar: ^4.0.1
   lorem_ipsum: any
 
